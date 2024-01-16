@@ -23,7 +23,8 @@ CREATE TABLE aluguel (
     data_inicio DATETIME NOT NULL,
     preco_dia DOUBLE NOT NULL,
     qtd_dias INTEGER NOT NULL,
-    preco_total DOUBLE
+    preco_total DOUBLE,
+    situacao_aluguel INT NOT NULL
 
 	/*CONSTRAINT FK_CARRO_ID FOREIGN KEY (carro_id) REFERENCES carro(id),
 	CONSTRAINT FK_CLIENTE_ID FOREIGN KEY (cliente_id) REFERENCES cliente(id)*/

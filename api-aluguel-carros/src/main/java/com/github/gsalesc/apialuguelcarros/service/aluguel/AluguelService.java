@@ -41,15 +41,9 @@ public class AluguelService {
 		
 		validarAluguel.forEach(v -> v.validarAluguel(dto));
 		
-		Carro carro = carroRepository.findById(dto.carroId())
-					.orElseThrow(() -> new RuntimeException("Carro não encontrado"));	
+		Carro carro = carroRepository.findById(dto.carroId()).get();	
 		
-		Cliente cliente = clienteRepository.findByCpf(dto.cliente().getCpf())
-				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-		
-		if(cliente == null) {
-			cliente = clienteRepository.save(dto.cliente());
-		}
+		Cliente cliente = clienteRepository.findByCpf(dto.cliente().getCpf()).get();
 		
 		Aluguel novo = new Aluguel(dto);
 		carro.setSituacao(Situacao.ALUGADO);

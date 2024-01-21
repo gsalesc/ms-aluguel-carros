@@ -8,7 +8,6 @@ import com.github.gsalesc.apialuguelcarros.domain.aluguel.Aluguel;
 
 @FeignClient(name="email-sender", url="localhost:8200")
 public interface EmailProxy {
-	
 	@PostMapping("/api/email")
 	void enviarEmail(@RequestBody Aluguel aluguel);
 }

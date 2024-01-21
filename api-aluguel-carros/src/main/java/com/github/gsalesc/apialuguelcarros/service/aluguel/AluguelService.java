@@ -16,7 +16,6 @@ import com.github.gsalesc.apialuguelcarros.repository.carro.CarroRepository;
 import com.github.gsalesc.apialuguelcarros.repository.cliente.ClienteRepository;
 import com.github.gsalesc.apialuguelcarros.service.aluguel.validations.ValidarAluguel;
 
-
 @Service
 public class AluguelService {
 	
@@ -45,7 +44,8 @@ public class AluguelService {
 		Carro carro = carroRepository.findById(dto.carroId())
 					.orElseThrow(() -> new RuntimeException("Carro não encontrado"));	
 		
-		Cliente cliente = clienteRepository.findByCpf(dto.cliente().getCpf());
+		Cliente cliente = clienteRepository.findByCpf(dto.cliente().getCpf())
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 		
 		if(cliente == null) {
 			cliente = clienteRepository.save(dto.cliente());
@@ -62,5 +62,21 @@ public class AluguelService {
 		emailProxy.enviarEmail(saved);
 		
 		return saved;
+	}
+	
+	public List<Aluguel> listar(){
+		return aluguelRepository.findAll();
+	}
+	
+	public List<Aluguel> listarAlugueisPorCliente(String cpf){
+		
+		Cliente cliente = clienteRepository.findByCpf(cpf)
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+			
+		return aluguelRepository.findByCliente(cliente);
+	}
+	
+	public void deletar(Aluguel aluguel) {
+		aluguelRepository.delete(aluguel);
 	}
 }

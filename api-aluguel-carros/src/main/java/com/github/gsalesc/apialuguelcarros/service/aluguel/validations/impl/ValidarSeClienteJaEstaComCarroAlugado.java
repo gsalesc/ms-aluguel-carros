@@ -23,7 +23,8 @@ public class ValidarSeClienteJaEstaComCarroAlugado implements ValidarAluguel{
 	
 	@Override
 	public void validarAluguel(AluguelNovoDTO dto) {
-		Cliente clienteBanco = clienteRepository.findByCpf(dto.cliente().getCpf());
+		Cliente clienteBanco = clienteRepository.findByCpf(dto.cliente().getCpf())
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 		
 		if(clienteBanco != null) {
 			Aluguel aluguelAgendado = aluguelRepository.findByClienteAndSituacao(clienteBanco

@@ -3,6 +3,7 @@ package com.github.gsalesc.apialuguelcarros.domain.aluguel.dto;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.gsalesc.apialuguelcarros.domain.aluguel.Aluguel;
 import com.github.gsalesc.apialuguelcarros.domain.cliente.Cliente;
 
 import jakarta.validation.constraints.NotBlank;

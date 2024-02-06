@@ -1,5 +1,5 @@
 package com.github.gsalesc.apialuguelcarros.domain.carro;
 
-public enum Situacao {
+public enum SituacaoCarro {
 	DISPONIVEL, ALUGADO
 }

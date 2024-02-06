@@ -25,5 +25,7 @@ public class Carro {
 	private String marca;
 	@Column(unique = true)
 	private String placa;
-	private Situacao situacao;
+	
+	@Column(name = "situacao_carro")
+	private SituacaoCarro situacao;
 }

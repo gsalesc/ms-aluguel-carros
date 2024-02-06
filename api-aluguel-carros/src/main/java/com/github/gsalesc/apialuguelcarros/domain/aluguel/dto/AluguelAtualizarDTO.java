@@ -3,14 +3,13 @@ package com.github.gsalesc.apialuguelcarros.domain.aluguel.dto;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.github.gsalesc.apialuguelcarros.domain.aluguel.Aluguel;
+import com.github.gsalesc.apialuguelcarros.domain.aluguel.SituacaoAluguel;
 import com.github.gsalesc.apialuguelcarros.domain.cliente.Cliente;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-public record AluguelNovoDTO(
+public record AluguelAtualizarDTO(
 		 @NotNull
 		 Long carroId,
 		 
@@ -27,5 +26,8 @@ public record AluguelNovoDTO(
 		 
 		 @NotNull
 		 @Positive
-		 int qtdDias) 
+		 double qtdDias,
+		 
+		 @NotNull
+		 SituacaoAluguel situacao) 
 {}

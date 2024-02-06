@@ -40,10 +40,13 @@ public class Aluguel {
 
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataInicio;
-	private double precoDia;
-	private double qtdDias;
-	private double precoTotal;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime dataFim;
 	
+	private double precoDia;
+	private int qtdDias;
+	private double precoTotal;
+
 	@Column(name = "situacao_aluguel")
 	private SituacaoAluguel situacao;
 	
@@ -52,6 +55,11 @@ public class Aluguel {
 		this.dataInicio = dto.dataInicio();
 		this.precoDia = dto.precoDia();
 		this.qtdDias = dto.qtdDias();
+		this.dataFim = dataInicio.plusDays(this.qtdDias);
 		this.situacao = SituacaoAluguel.AGENDADO;
+	}
+	
+	public void alterarSituacao(SituacaoAluguel situacao) {
+		this.situacao = situacao;
 	}
 }

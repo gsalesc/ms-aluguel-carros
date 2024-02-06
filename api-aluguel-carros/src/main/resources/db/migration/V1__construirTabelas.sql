@@ -11,7 +11,7 @@ CREATE TABLE carro (
     nome VARCHAR(50) NOT NULL,
     marca VARCHAR(30) NOT NULL,
     placa VARCHAR(10) NOT NULL,
-    situacao INT NOT NULL
+    situacao_carro INT NOT NULL
     
     /*CONSTRAINT UQ_placa UNIQUE (placa)*/
 );
@@ -21,6 +21,7 @@ CREATE TABLE aluguel (
     carro_id INT NOT NULL,
     cliente_id INT NOT NULL,
     data_inicio DATETIME NOT NULL,
+    data_fim DATETIME NOT NULL,
     preco_dia DOUBLE NOT NULL,
     qtd_dias INTEGER NOT NULL,
     preco_total DOUBLE,

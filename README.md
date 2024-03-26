@@ -2,7 +2,7 @@
 
 Microsserviço simples de aluguel de carros que realiza comunicação com um serviço de email
 
-### Ferramentas utilziadas
+### Ferramentas utilizadas
   1. Spring Boot
   2. Spring Data JPA
   3. Spring OpenFeign

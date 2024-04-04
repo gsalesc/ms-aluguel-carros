@@ -21,7 +21,6 @@ public class EmailService {
 	private String emailSenha;
 	
 	public void enviarEmail(Aluguel aluguel) {
-		
 		SimpleMailMessage mensagem = new SimpleMailMessage();
 		mensagem.setFrom(emailUrl);
 		mensagem.setTo(aluguel.getCliente().getEmail());

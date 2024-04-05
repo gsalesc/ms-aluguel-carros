@@ -48,10 +48,4 @@ public class AluguelController {
 		
 		return ResponseEntity.ok(listaDeAlugueisPorCliente);
 	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<AluguelListarDTO> atualizar(@PathVariable Long id, AluguelAtualizarDTO dto){
-		Aluguel atualizado  = aluguelService.atualizarAluguel(id, dto);
-		return ResponseEntity.ok(new AluguelListarDTO(atualizado));
-	}
 }

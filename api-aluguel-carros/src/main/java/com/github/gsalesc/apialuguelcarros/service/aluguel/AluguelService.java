@@ -1,6 +1,7 @@
 package com.github.gsalesc.apialuguelcarros.service.aluguel;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class AluguelService {
 		
 		Carro carro = carroRepository.findById(dto.carroId()).get();	
 		
-		Cliente cliente = clienteRepository.findByCpf(dto.cliente().getCpf()).get();
+		Cliente cliente = this.clienteAluguel(dto);
 		
 		Aluguel novo = new Aluguel(dto);
 		carro.setSituacao(SituacaoCarro.ALUGADO);
@@ -94,5 +95,21 @@ public class AluguelService {
 	
 	public void deletar(Aluguel aluguel) {
 		aluguelRepository.delete(aluguel);
+	}
+	
+	private Cliente clienteAluguel(AluguelNovoDTO dto) {
+		Optional<Cliente> opCliente = clienteRepository.findByCpf(dto.cliente().getCpf());
+		
+		if(opCliente.isPresent()) {
+			return opCliente.get();
+		}
+		
+		Cliente novoCliente = new Cliente();
+		novoCliente.setNome(dto.cliente().getNome());
+		novoCliente.setEmail(dto.cliente().getEmail());
+		novoCliente.setCpf(dto.cliente().getCpf());
+		novoCliente.setDataNascimento(dto.cliente().getDataNascimento());
+		
+		return clienteRepository.save(novoCliente);
 	}
 }
